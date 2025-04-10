@@ -24,4 +24,6 @@ The model is created using PostgreSQL due to the limited size of the data for th
 ## Other Scenarios 
 
 Although the model presented here is appropriate for the use case and POC presented here there are multiple other tools which could be used if there were chnages to the environment. Some of these include
- - ** The size of the data is increased by 100x ** 
+ - **The size of the data is increased by 100x** : In this case spark would have tobe used. Additionally an Amazon EMR cluster should be used to run the ETL to del with the increased size. This offers basically unlimited computing power as it scales in and out depending on the need of the model. The data can also be uploaded directly to S3.
+ - **The Pipelines have to be run at 7am on a daily basis**: This can be easily set up using Airflow. A DAG can be set up with each step of the ETL included within it. A scheduler is then set up to ensure it is ran at the times needed without human intervention.
+ - **The Database needs too be accessed by 100+ people** : Cloud capabilities on AWS allows large amounts of people to access the same data remotely and allows the root user to have control over their permissions. Due to the large size of the data and number of people who require access, redshift may be the most ideal solution in this scenario.
