@@ -19,6 +19,12 @@ Landing tables should be constructed to ensure all of the data is loaded correct
 
 ## Model 
 The model which was chosen to be appropriate for this data was the star schema, with the immigrant data as the central fact table. Visa, temperature and demogrpahic can then add supplementrary data as seperate dimension tables. This is better illustrated via the table below. 
+|Table_Name|Columns|Table_type|Info|
+|---|---|---|---|
+|Immigrants_df|**cicid**, i94yr, i94mon, i94cit, i94res, i94port, arrdate, i94mode, i94addr, depdate, i94bir, i94visa, count, dtatdfile, occup, entdepa, entdepu, matflag, biryear, dtaddto, gender, insum, airline, admnum, fltno, State_name_lower, temp_id| Fact Table| Information on immigration details |
+|Visa_df| **i94visa**, visatype| Dimension table| Information on visas and their corresponding type|
+|Temperatures_df| **temp_id**, Average_temperature, Average_temperature_uncertainty, State, Country, Year, Month| Dimension Table| Information around the average temperature in April 2013 for U.S states| 
+|Demographics_df| **City, State**,	Median Age,	Male Population, Female Population, Total Population, Number of Veterans, Foreign-born, Average Household Size,	State Code,	Race, Count, Race_American Indian and Alaska Native, Race_Asian, Race_Black or African-American, Race_Hispanic or Latino, 	Race_White,	count_hispanic or latino, count_white, count_asian,	count_black or african-american,	count_american indian and alaska native| Dimension table| Information on demogrpahics of US cities|
 The model is created using PostgreSQL due to the limited size of the data for this POC. As in future we would want to use larger quantities of data which would update on a monthly basis and EMR cluster with spark could be used. An AWS glue job would also be appropriate. For the scheduling aspect, airflow would be the suggested tool. 
 
 ## Other Scenarios 
